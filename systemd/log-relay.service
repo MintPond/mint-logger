@@ -1,0 +1,15 @@
+[Service]
+WorkingDirectory=/home/logs/mint-logger/scripts
+ExecStart=/usr/bin/node /home/logs/mint-logger/relay.js "0.0.0.0" 18002 "0.0.0.0" 18001
+Restart=always
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=log-relay
+User=logs
+Group=logs
+
+[Install]
+WantedBy=multi-user.target
+
+# Add this file to /etc/systemd/system/log-relay.service
+# then run systemctl daemon-reload && systemctl enable log-relay && systemctl start log-relay
