@@ -273,18 +273,10 @@ class Logger extends EventEmitter {
     }
 
 
+    static get CLASS_ID() { return 'dce588f9209eb3cfb8cfedd24d1598fc75bd1184ea918b284774785a3e9d6e3f'; }
+    static TEST_INSTANCE(Logger) { return new Logger('test'); }
     static [Symbol.hasInstance](obj) {
-        return pu.isInstanceOfByName(obj, 'Logger') &&
-            pu.isFunction(obj.createLogger) &&
-            pu.isFunction(obj.trace) &&
-            pu.isFunction(obj.debug) &&
-            pu.isFunction(obj.info) &&
-            pu.isFunction(obj.warn) &&
-            pu.isFunction(obj.error) &&
-            pu.isFunction(obj.special) &&
-            pu.hasGetters(obj,
-                'canTrace', 'canDebug', 'canWarn', 'canInfo', 'canError',
-                'level', 'groupId', 'contextName', 'rootLogger');
+        return pu.isInstanceOfById(obj, Logger.CLASS_ID);
     }
 }
 

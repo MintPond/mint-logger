@@ -2,6 +2,7 @@
 
 const
     precon = require('@mintpond/mint-precon'),
+    pu = require('@mintpond/mint-utils').prototypes,
     Logger = require('./abstract.Logger'),
     ForkMessageType = require('./../const.ForkMessageType');
 
@@ -23,7 +24,7 @@ class ForkLogger extends Logger {
         super(groupId, contextName, rootLogger);
 
         const _ = this;
-        if (!rootLogger) {
+        if (!rootLogger && groupId !== '_instanceof_test_'/*Disables messages for instanceof test*/) {
 
             process.on('message', message => {
                 if (message.type !== ForkMessageType.LOGGER_LEVEL || message.groupId !== _.groupId)
@@ -65,6 +66,13 @@ class ForkLogger extends Logger {
             log: log,
             logStack: logStack
         });
+    }
+
+
+    static get CLASS_ID() { return 'fcbc3d783afc1510606d6eead7bcb72d9f9667b9e4a4c6701eb381469318ebe3'; }
+    static TEST_INSTANCE(ForkLogger) { return new ForkLogger('_instanceof_test_'); }
+    static [Symbol.hasInstance](obj) {
+        return pu.isInstanceOfById(obj, ForkLogger.CLASS_ID);
     }
 }
 

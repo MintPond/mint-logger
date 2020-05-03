@@ -6,6 +6,7 @@ const
     cluster = require('cluster'),
     precon = require('@mintpond/mint-precon'),
     mu = require('@mintpond/mint-utils'),
+    pu = require('@mintpond/mint-utils').prototypes,
     Logger = require('./abstract.Logger'),
     LoggerLevel = require('./../const.LoggerLevel'),
     ForkMessageType = require('./../const.ForkMessageType'),
@@ -44,7 +45,7 @@ class MasterLogger extends Logger {
         _._archiver = new LogArchiver();
         _._streamsArr = rootLogger ? rootLogger._streamsArr : [];
 
-        if (!rootLogger) {
+        if (!rootLogger && groupId !== '_instanceof_test_'/*Disables messages for instanceof test*/) {
             Object.keys(cluster.workers).forEach(workerId => {
                 const worker = cluster.workers[workerId];
                 _._listenToWorker(_, worker);
@@ -253,6 +254,13 @@ class MasterLogger extends Logger {
 
             _._streamsArr.push(stream);
         });
+    }
+
+
+    static get CLASS_ID() { return 'ea60380de0f1552e713af4863fafcc7503329b7100677dad4e8b7b6f893f341f'; }
+    static TEST_INSTANCE(MasterLogger) { return new MasterLogger('_instanceof_test_'); }
+    static [Symbol.hasInstance](obj) {
+        return pu.isInstanceOfById(obj, MasterLogger.CLASS_ID);
     }
 }
 
