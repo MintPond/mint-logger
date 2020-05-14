@@ -28,8 +28,9 @@ const timeFormat = 'yyyy-mm-dd HH:MM:ss Z';
 
 const
     net = require('net'),
-    colors = require('colors'),
     dateFormat = require('dateformat');
+
+require('colors');
 
 const argsArr = process.argv.slice(2);
 if (argsArr[0] === '--help') {
@@ -171,7 +172,7 @@ function _printEntry(entry) {
         });
     }
 
-    output += _levelToTagColor(entry.level, tags.join(''));
+    output += _levelToTagColor(entry.level, tags);
 
     if (msg)
         output += _levelToMsgColor(entry.level, String(msg).replace('\\n', '\n'));

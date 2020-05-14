@@ -37,17 +37,17 @@ const
     mu = require('@mintpond/mint-utils'),
     SimpleRingBuffer = require('@mintpond/mint-utils').SimpleRingBuffer;
 
-const args = process.argv.slice(2);
+const argsArr = process.argv.slice(2);
 if (argsArr[0] === '--help') {
     console.log(`node relay [inputHost] [inputPort] [outputHost] [outputPort]`)
     process.exit(0);
     return;
 }
 
-const inputListenHost = args[0] || defaultInputHost;
-const inputListenPort = args[1] || defaultInputPort;
-const outputListenHost = args[2] || defaultOutputHost;
-const outputListenPort = args[3] || defaultOutputPort;
+const inputListenHost = argsArr[0] || defaultInputHost;
+const inputListenPort = argsArr[1] || defaultInputPort;
+const outputListenHost = argsArr[2] || defaultOutputHost;
+const outputListenPort = argsArr[3] || defaultOutputPort;
 
 const history = new SimpleRingBuffer(maxHistorySize);
 const outputClientMap = new Map();
