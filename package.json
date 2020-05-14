@@ -1,6 +1,6 @@
 {
   "name": "@mintpond/mint-logger",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Multi stream JSON based logger for NodeJS",
   "author": "JCThePants",
   "main": "index.js",
