@@ -8,7 +8,7 @@
   "dependencies": {
     "@mintpond/mint-precon": "^1.0.0",
     "@mintpond/mint-utils": "^2.0.0",
-    "async": "^3.0.1",
+    "async": "^3.2.2",
     "fs-extra": "^7.0.1",
     "colors": "^1.3.3",
     "dateformat": "^3.0.3",
