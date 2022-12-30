@@ -15,7 +15,7 @@
     "tar-fs": "^2.0.1"
   },
   "devDependencies": {
-    "mocha": "^7.1.2"
+    "mocha": "^10.2.0"
   },
   "scripts": {
     "test": "mocha tests/mocha.*"
